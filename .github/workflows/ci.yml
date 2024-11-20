@@ -18,6 +18,7 @@ jobs:
 
       - name: Set up Docker
         run: |
+          sudo apt-get remove -y containerd containerd.io
           sudo apt-get update
           sudo apt-get install -y docker.io
 
