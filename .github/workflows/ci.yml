@@ -1,0 +1,33 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main   # Déclenche l'action sur chaque push vers la branche main
+  pull_request:
+    branches:
+      - main   # Déclenche l'action sur chaque PR vers la branche main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker.io
+
+      - name: Build Docker image
+        run: |
+          cd services/api
+          docker build -t test-api .
+
+      - name: Push Docker image to Docker Hub (optional)
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker tag test-api username/repository:tag
+          docker push username/repository:tag
