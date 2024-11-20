@@ -30,7 +30,6 @@ services:
     networks:
       - monitoring_network
 
-
 networks:
   monitoring_network:
     driver: bridge
