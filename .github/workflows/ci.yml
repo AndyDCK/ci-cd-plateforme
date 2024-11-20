@@ -33,5 +33,5 @@ jobs:
 
       - name: Push Docker image to Docker Hub (optional)
         run: |
-          docker tag test-api username/repository:tag
-          docker push username/repository:tag
+          docker tag test-api andydck/ci-cd-plateforme:tag
+          docker push andydck/ci-cd-plateforme:tag
